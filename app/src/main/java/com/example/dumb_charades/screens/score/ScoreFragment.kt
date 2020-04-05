@@ -9,15 +9,17 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 
 import com.example.dumb_charades.R
+import com.example.dumb_charades.ScoreViewModelFactory
 import com.example.dumb_charades.databinding.ScoreFragmentBinding
 
-class ScoreFragment : Fragment() {
+class ScoreFragment() : Fragment() {
 
     companion object {
         fun newInstance() = ScoreFragment()
     }
 
     private lateinit var viewModel: ScoreViewModel
+    private lateinit var viewModelFactory: ScoreViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,13 +33,16 @@ class ScoreFragment : Fragment() {
             container,
             false
         )
-
+        viewModelFactory =  ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(arguments!!).score)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(ScoreViewModel::class.java)
+        binding.scoreText.text = viewModel.score.toString()
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ScoreViewModel::class.java)
+//        viewModel = ViewModelProviders.of(this).get(ScoreViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
