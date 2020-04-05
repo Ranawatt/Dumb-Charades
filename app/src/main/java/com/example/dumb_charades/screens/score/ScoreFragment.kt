@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 
 import com.example.dumb_charades.R
+import com.example.dumb_charades.databinding.ScoreFragmentBinding
 
 class ScoreFragment : Fragment() {
 
@@ -21,7 +23,16 @@ class ScoreFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.score_fragment, container, false)
+
+        // Inflate view and obtain an instance of the binding class.
+        val binding: ScoreFragmentBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.score_fragment,
+            container,
+            false
+        )
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

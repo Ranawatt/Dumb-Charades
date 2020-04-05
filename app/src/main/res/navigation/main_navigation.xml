@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/title_destination"
-        android:name="com.example.android.guesstheword.screens.title.TitleFragment"
+        android:name="com.example.dumb_charades.screens.title.TitleFragment"
         android:label="title_fragment"
         tools:layout="@layout/title_fragment">
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/game_destination"
-        android:name="com.example.android.guesstheword.screens.game.GameFragment"
+        android:name="com.example.dumb_charades.screens.game.GameFragment"
         android:label="game_fragment"
         tools:layout="@layout/game_fragment">
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/score_destination"
-        android:name="com.example.android.guesstheword.screens.score.ScoreFragment"
+        android:name="com.example.dumb_charades.screens.score.ScoreFragment"
         android:label="score_fragment"
         tools:layout="@layout/score_fragment">
         <action
