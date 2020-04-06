@@ -27,6 +27,7 @@ class TitleFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding: TitleFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.title_fragment, container, false)
+        viewModel = ViewModelProviders.of(this).get(TitleViewModel::class.java)
 
         binding.playGameButton.setOnClickListener {
             findNavController().navigate(TitleFragmentDirections.actionTitleToGame())
@@ -36,7 +37,7 @@ class TitleFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TitleViewModel::class.java)
+//        viewModel = ViewModelProviders.of(this).get(TitleViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
