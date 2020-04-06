@@ -83,7 +83,7 @@ class GameViewModel : ViewModel() {
     }
 
     fun onGameFinish(){
-        _eventGameFinish.value = true
+        _eventGameFinish.value = false
     }
     override fun onCleared() {
         super.onCleared()

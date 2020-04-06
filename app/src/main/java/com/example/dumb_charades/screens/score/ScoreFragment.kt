@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 
 import com.example.dumb_charades.R
 import com.example.dumb_charades.ScoreViewModelFactory
@@ -36,7 +37,11 @@ class ScoreFragment() : Fragment() {
         viewModelFactory =  ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(arguments!!).score)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(ScoreViewModel::class.java)
-        binding.scoreText.text = viewModel.score.toString()
+        // Add observer for score
+        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
+            binding.scoreText.text = newScore.toString()
+        })
+//        binding.scoreText.text = viewModel.score.toString()
         return binding.root
     }
 
