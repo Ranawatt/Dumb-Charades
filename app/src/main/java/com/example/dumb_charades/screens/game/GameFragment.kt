@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.NavHostFragment.findNavController
 
 import com.example.dumb_charades.R
 import com.example.dumb_charades.databinding.GameFragmentBinding
@@ -38,7 +38,7 @@ class GameFragment : Fragment() {
         // Set the viewmodel for databinding - this allows the bound layout access
         // to all the data in the ViewModel
         binding.gameViewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
 //        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
 //            binding.scoreText.text = newScore.toString()
@@ -54,19 +54,11 @@ class GameFragment : Fragment() {
 //        binding.correctButton.setOnClickListener { onCorrect() }
 //        binding.skipButton.setOnClickListener { onSkip() }
 //        binding.endGameButton.setOnClickListener { onEndGame() }
-        updateScoreText()
-        updateWordText()
+//        updateScoreText()
+//        updateWordText()
         return binding.root
 
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        Log.i("GameFragment", "Called ViewModelProviders.of")
-
-        // TODO: Use the ViewModel
-    }
-
     /** Methods for buttons presses **/
 
 //    private fun onSkip() {
@@ -84,14 +76,14 @@ class GameFragment : Fragment() {
 
     /** Methods for updating the UI **/
 
-    private fun updateWordText() {
-        binding.wordText.text = viewModel.word.value
-    }
-
-    private fun updateScoreText() {
-        binding.scoreText.text = viewModel.score.value.toString()
-    }
-
+//    private fun updateWordText() {
+//        binding.wordText.text = viewModel.word.value
+//    }
+//
+//    private fun updateScoreText() {
+//        binding.scoreText.text = viewModel.score.value.toString()
+//    }
+//
 //    private fun onEndGame(){
 //        gameFinished()
 //    }
@@ -100,7 +92,7 @@ class GameFragment : Fragment() {
         Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
         val action = GameFragmentDirections.actionGameToScore()
         action.score = viewModel.score.value!!
-        NavHostFragment.findNavController(this).navigate(action)
+        findNavController(this).navigate(action)
         viewModel.onGameFinished()
     }
 

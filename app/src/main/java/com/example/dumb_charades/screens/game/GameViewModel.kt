@@ -9,18 +9,13 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
-
     companion object {
-
         // Time when the game is over
         private const val DONE = 0L
-
         // Countdown time interval
         private const val ONE_SECOND = 1000L
-
         // Total time for the game
         private const val COUNTDOWN_TIME = 60000L
-
     }
     private val timer: CountDownTimer
     // Countdown time
@@ -49,6 +44,12 @@ class GameViewModel : ViewModel() {
     // The list of words - the front of the list is the next word to guess
     private lateinit var wordList: MutableList<String>
 
+    val wordHint = Transformations.map(word) { word ->
+        val randomPosition = (1..word.length).random()
+        "Current word has " + word.length + " letters" +
+                "\nThe letter at position " + randomPosition + " is " +
+                word.get(randomPosition - 1).toUpperCase()
+    }
     /**
      * Resets the list of words and randomizes the order
      */
@@ -82,31 +83,30 @@ class GameViewModel : ViewModel() {
     init {
         // Creates a timer which triggers the end of the game when it finishes
         timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
-
             override fun onTick(millisUntilFinished: Long) {
                 _currentTime.value = millisUntilFinished/ONE_SECOND
             }
-
             override fun onFinish() {
                 _currentTime.value = DONE
                 onGameFinish()
             }
         }
-
         timer.start()
         _word.value = ""
         _score.value = 0
+        Log.i("GameViewModel", "GameViewModel created!")
         resetList()
         nextWord()
-        Log.i("GameViewModel", "GameViewModel created!")
     }
     /**
      * Moves to the next word in the list
      */
     private fun nextWord() {
-        if (!wordList.isEmpty()) {
-            resetList()
-//            onGameFinish()
+        if (wordList.isEmpty()) {
+//            resetList()
+//            //Select and remove a word from the list
+//            _word.value = wordList.removeAt(0)
+            onGameFinish()
         }else{
             //Select and remove a word from the list
             _word.value = wordList.removeAt(0)
@@ -124,11 +124,11 @@ class GameViewModel : ViewModel() {
     }
 
     fun onGameFinish(){
-        _eventGameFinish.value = false
+        _eventGameFinish.value = true
     }
 
     fun onGameFinished(){
-        _eventGameFinish.value = true
+        _eventGameFinish.value = false
     }
 
     override fun onCleared() {

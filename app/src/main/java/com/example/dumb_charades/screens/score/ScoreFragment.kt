@@ -19,25 +19,17 @@ class ScoreFragment() : Fragment() {
     companion object {
         fun newInstance() = ScoreFragment()
     }
-
     private lateinit var viewModel: ScoreViewModel
     private lateinit var viewModelFactory: ScoreViewModelFactory
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-
         // Inflate view and obtain an instance of the binding class.
-        val binding: ScoreFragmentBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.score_fragment,
-            container,
-            false
+        val binding: ScoreFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.score_fragment,
+            container, false
         )
         viewModelFactory =  ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(arguments!!).score)
-        viewModel = ViewModelProviders.of(this, viewModelFactory)
-            .get(ScoreViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ScoreViewModel::class.java)
         binding.scoreViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         // Add observer for score
@@ -50,16 +42,9 @@ class ScoreFragment() : Fragment() {
         viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer { playAgain ->
             if(playAgain)
                 findNavController().navigate(ScoreFragmentDirections.actionRestart())
-                viewModel.onPlayAgainComplete()
+//                viewModel.onPlayAgainComplete()
         })
 //        binding.playAgainButton.setOnClickListener{  viewModel.onPlayAgain()  }
         return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProviders.of(this).get(ScoreViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }

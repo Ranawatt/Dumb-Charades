@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ScoreViewModel(val finalScore : Int) : ViewModel() {
+class ScoreViewModel(finalScore : Int) : ViewModel() {
     // TODO: Implement the ViewModel
     private val  _score = MutableLiveData<Int>()
     val score: LiveData<Int>
@@ -28,7 +28,4 @@ class ScoreViewModel(val finalScore : Int) : ViewModel() {
         _eventPlayAgain.value = false
     }
 
-    override fun onCleared() {
-        super.onCleared()
-    }
 }
