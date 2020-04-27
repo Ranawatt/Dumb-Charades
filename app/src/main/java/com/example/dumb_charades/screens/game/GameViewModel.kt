@@ -54,28 +54,9 @@ class GameViewModel : ViewModel() {
      * Resets the list of words and randomizes the order
      */
     private fun resetList() {
-        wordList = mutableListOf(
-            "queen",
-            "hospital",
-            "basketball",
-            "cat",
-            "change",
-            "snail",
-            "soup",
-            "calendar",
-            "sad",
-            "desk",
-            "guitar",
-            "home",
-            "railway",
-            "zebra",
-            "jelly",
-            "car",
-            "crow",
-            "trade",
-            "bag",
-            "roll",
-            "bubble"
+        wordList = mutableListOf("queen", "hospital", "basketball", "cat", "change", "snail", "soup",
+            "calendar", "sad", "desk", "guitar", "home", "railway", "zebra", "jelly", "car", "crow",
+            "trade", "bag", "roll", "bubble"
         )
         wordList.shuffle()
     }
@@ -98,14 +79,10 @@ class GameViewModel : ViewModel() {
         resetList()
         nextWord()
     }
-    /**
-     * Moves to the next word in the list
-     */
+    // Moves to the next word in the list
+
     private fun nextWord() {
         if (wordList.isEmpty()) {
-//            resetList()
-//            //Select and remove a word from the list
-//            _word.value = wordList.removeAt(0)
             onGameFinish()
         }else{
             //Select and remove a word from the list

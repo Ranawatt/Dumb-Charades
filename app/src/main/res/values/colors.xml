@@ -11,4 +11,12 @@
     <color name="grey_text_color">#99000000</color>
     <color name="grey_button_color">#606060</color>
     <color name="white_text_color">#ffffff</color>
+    <color name="gray_divider">#eeeeee</color>
+    <color name="white">#ffffff</color>
+    <color name="light_gray">#eeeeee</color>
+
+    <color name="divider_gray">#eeeeee</color>
+    <color name="button_blue">#3983f2</color>
+    <color name="caption_text_color">#555555</color>
+    <color name="pink">#df5591</color>
 </resources>

@@ -16,14 +16,12 @@ class TitleFragment : Fragment() {
     companion object {
         fun newInstance() = TitleFragment()
     }
-
     private lateinit var viewModel: TitleViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         // Inflate the layout for this fragment
         val binding: TitleFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.title_fragment, container, false)
@@ -34,11 +32,4 @@ class TitleFragment : Fragment() {
         }
         return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProviders.of(this).get(TitleViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }

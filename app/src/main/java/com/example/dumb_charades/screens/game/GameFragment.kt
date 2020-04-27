@@ -23,14 +23,10 @@ class GameFragment : Fragment() {
     companion object {
         fun newInstance() = GameFragment()
     }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate view and obtain an instance of the binding class
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.game_fragment,
-            container,
+        binding = DataBindingUtil.inflate(inflater, R.layout.game_fragment, container,
             false
         )
         Log.i("GameFragment", "Called ViewModelProviders.of")
@@ -87,7 +83,6 @@ class GameFragment : Fragment() {
 //    private fun onEndGame(){
 //        gameFinished()
 //    }
-
     private fun gameFinished() {
         Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
         val action = GameFragmentDirections.actionGameToScore()
@@ -95,6 +90,4 @@ class GameFragment : Fragment() {
         findNavController(this).navigate(action)
         viewModel.onGameFinished()
     }
-
-
 }
