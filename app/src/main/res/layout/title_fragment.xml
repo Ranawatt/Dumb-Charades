@@ -52,8 +52,19 @@
             android:text="@string/play_button"
             android:theme="@style/GoButton"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/movie_button"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/movie_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="72dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/movie_button"
+            android:theme="@style/GoButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

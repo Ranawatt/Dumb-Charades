@@ -61,6 +61,10 @@
         tools:layout="@layout/movie_destination" >
         <action
             android:id="@+id/action_movieFragment_to_game_destination"
-            app:destination="@id/game_destination" />
+            app:destination="@id/game_destination"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"/>
     </fragment>
 </navigation>

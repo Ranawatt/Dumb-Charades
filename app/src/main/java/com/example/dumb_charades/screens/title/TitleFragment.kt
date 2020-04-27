@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.dumb_charades.R
 import com.example.dumb_charades.databinding.TitleFragmentBinding
@@ -29,6 +30,9 @@ class TitleFragment : Fragment() {
 
         binding.playGameButton.setOnClickListener {
             findNavController().navigate(TitleFragmentDirections.actionTitleToGame())
+        }
+        binding.movieButton.setOnClickListener {
+            findNavController().navigate(TitleFragmentDirections.actionTitleDestinationToMovieFragment2())
         }
         return binding.root
     }
