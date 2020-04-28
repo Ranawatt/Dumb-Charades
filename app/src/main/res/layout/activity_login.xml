@@ -18,7 +18,7 @@
         android:id="@+id/login_email"
         style="@style/TextInputLayoutStyle"
         android:layout_marginTop="70dp"
-        android:hint="Email">
+        android:hint="@string/email_id">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -30,7 +30,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_password"
         style="@style/TextInputLayoutStyle"
-        android:hint="Password">
+        android:hint="@string/password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:singleLine="true"
-        android:text="Forgot password?"
+        android:text="@string/forgot_pwd"
         android:textColor="@color/White"
         app:layout_constraintEnd_toEndOf="@+id/login_password"
         app:layout_constraintStart_toStartOf="@+id/login_password"
@@ -61,7 +61,7 @@
         android:id="@+id/sign_up_email"
         style="@style/TextInputLayoutStyle"
         android:layout_marginTop="70dp"
-        android:hint="Email">
+        android:hint="@string/email_id">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -73,7 +73,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/sign_up_password"
         style="@style/TextInputLayoutStyle"
-        android:hint="Password">
+        android:hint="@string/password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -86,7 +86,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/sign_up_confirm_password"
         style="@style/TextInputLayoutStyle"
-        android:hint="Confirm Password">
+        android:hint="@string/confirm_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -109,7 +109,7 @@
         android:ellipsize="none"
         android:gravity="center"
         android:singleLine="true"
-        android:text="LOG IN"
+        android:text="@string/login_text"
         android:textColor="@color/White" />
 
     <TextView
@@ -119,7 +119,7 @@
         android:ellipsize="none"
         android:gravity="center"
         android:singleLine="true"
-        android:text="SIGN UP"
+        android:text="@string/sign_up_text"
         android:textColor="@color/White" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

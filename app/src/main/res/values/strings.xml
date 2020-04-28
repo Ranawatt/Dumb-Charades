@@ -33,4 +33,8 @@
 
     <string name="login_text">LOG IN</string>
     <string name="sign_up_text">SIGN UP</string>
+    <string name="email_id">Email</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="forgot_pwd">Forgot password?</string>
 </resources>

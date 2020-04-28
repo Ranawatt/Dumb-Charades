@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
             when (currentStateId) {
                 R.id.start -> {
 //                    Toast.makeText(this,"Perform Login",Toast.LENGTH_LONG).show()
-                    if (login_email.editText!!.text.equals("sugandhpatna95@gmail.com") && login_password.editText!!.text.equals("sugandh"))
+                    if (login_email.editText!!.text.toString().equals("sugandhpatna95@gmail.com") && login_password.editText!!.text.toString().equals("sugandh"))
                         intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
 
@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
             when (currentStateId) {
                 R.id.end -> {
                     Toast.makeText(this,"Perform SignUp",Toast.LENGTH_LONG).show()
-                    if (sign_up_password.equals(sign_up_confirm_password)){
+                    if (sign_up_password.editText!!.text.toString().equals(sign_up_confirm_password)){
                         Toast.makeText(this,"Successfully Signed up",Toast.LENGTH_LONG).show()
                     }
                 }
