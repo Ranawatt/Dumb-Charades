@@ -29,4 +29,8 @@
     <string name="template_similar">Similar</string>
     <string name="rent">Rent from R29.99</string>
     <string name="buy">Buy from R129.99</string>
+
+
+    <string name="login_text">LOG IN</string>
+    <string name="sign_up_text">SIGN UP</string>
 </resources>
