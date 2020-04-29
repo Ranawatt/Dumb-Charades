@@ -1,6 +1,7 @@
 package com.example.dumb_charades
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.TransitionManager
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.TransitionAdapter
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.video_background.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -16,6 +18,12 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.anna_moskal)
+        videoView.setVideoURI(uri)
+        videoView.start()
+        videoView.setOnPreparedListener {
+            it.isLooping = true
+        }
         login_text.setOnClickListener {
             when (currentStateId) {
                 R.id.start -> {
@@ -35,6 +43,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this,"Perform SignUp",Toast.LENGTH_LONG).show()
                     if (sign_up_password.editText!!.text.toString().equals(sign_up_confirm_password)){
                         Toast.makeText(this,"Successfully Signed up",Toast.LENGTH_LONG).show()
+                        startActivity(Intent(this,MainActivity::class.java))
                     }
                 }
                 else -> motionLayout.transitionToEnd()
@@ -47,5 +56,10 @@ class LoginActivity : AppCompatActivity() {
                 currentStateId = currentId
             }
         })
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        videoView.start()
     }
 }

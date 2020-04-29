@@ -22,10 +22,12 @@
 
     <color name="ic_launcher_background">#CBE7EB</color>
 
-    <color name="colorLoginSection">#96B8B4</color>
+<!--    <color name="colorLoginSection">#96B8B4</color>-->
     <color name="colorSignInSection">#514A72</color>
-
+<!--    <color name="colorLoginSection">#07F88A07</color>-->
+<!--    <color name="colorSignInSection">#06350CF5</color>-->
     <color name="White">#FFFFFF</color>
     <color name="Black">#040404</color>
     <color name="Gray">#CECECE</color>
+    <color name="colorLoginSection">#00FCFBFB</color>
 </resources>

@@ -5,8 +5,18 @@
     android:id="@+id/motionLayout"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:background="@drawable/singapore"
     app:layoutDescription="@xml/scene"
     tools:context=".LoginActivity">
+
+    <View
+        android:id="@+id/video_root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
 
     <View
         android:id="@+id/login_root"

@@ -397,5 +397,29 @@
                 motion:layout_constraintTop_toTopOf="parent"
                 motion:layout_constraintWidth_percent="0.9" />
         </Constraint>
+
+        <Constraint
+            android:id="@+id/video_root"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <Layout
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/videoView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <Layout
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+        </Constraint>
     </ConstraintSet>
 </MotionScene>
