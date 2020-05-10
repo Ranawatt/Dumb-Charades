@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_launcher_alt_foreground_trimmed"
+    android:insetLeft="23.1481481481481%"
+    android:insetTop="25%" />

@@ -1,17 +1,30 @@
 package com.example.dumb_charades.adaptiveicons
 
+
+import android.animation.ObjectAnimator
+import android.content.Context
+import android.content.Intent
+import android.graphics.Rect
 import android.graphics.drawable.AdaptiveIconDrawable
 import android.graphics.drawable.ClipDrawable.HORIZONTAL
 import android.graphics.drawable.ClipDrawable.VERTICAL
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MotionEvent
-import android.view.VelocityTracker
-import android.view.View
+import android.util.FloatProperty
+import android.view.*
 import android.view.View.GONE
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.SeekBar
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.annotation.FloatRange
+import androidx.annotation.RequiresApi
+import androidx.dynamicanimation.animation.FloatPropertyCompat
+import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.loader.app.LoaderManager
+import androidx.loader.content.AsyncTaskLoader
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -137,8 +150,9 @@ class AdaptiveIconActivity : AppCompatActivity() {
             this, android.R.interpolator.fast_out_slow_in)
         findViewById<View>(R.id.mask).setOnClickListener {
             corner = ++corner % corners.size
-            with(ObjectAnimator.ofFloat(
-                this@MainActivity,
+            with(
+                ObjectAnimator.ofFloat(
+                this@AdaptiveIconActivity,
                 ICON_CORNER_RADIUS,
                 corners[corner])) {
                 duration = 200L
@@ -205,7 +219,7 @@ class AdaptiveIconActivity : AppCompatActivity() {
 
         supportLoaderManager.initLoader(0, Bundle.EMPTY,
             object : LoaderManager.LoaderCallbacks<List<AdaptiveIconDrawable>> {
-                override fun onCreateLoader(id: Int, args: Bundle) =
+                override fun onCreateLoader(id: Int, args: Bundle?) =
                     AdaptiveIconLoader(applicationContext)
 
                 override fun onLoadFinished(loader: Loader<List<AdaptiveIconDrawable>>,
@@ -218,5 +232,204 @@ class AdaptiveIconActivity : AppCompatActivity() {
 
                 override fun onLoaderReset(loader: Loader<List<AdaptiveIconDrawable>>) {}
             })
+    }
+
+    private fun releaseVelocity(releaseVelocityX: Float, releaseVelocityY: Float) {
+        if (releaseVelocityX != 0f) {
+            with(SpringAnimation(this, VELOCITY_X, 0f)) {
+                spring.stiffness = springStiffness
+                spring.dampingRatio = springDamping
+                setStartVelocity(releaseVelocityX)
+                start()
+            }
+        }
+        if (releaseVelocityY != 0f) {
+            with(SpringAnimation(this, VELOCITY_Y, 0f)) {
+                spring.stiffness = springStiffness
+                spring.dampingRatio = springDamping
+                setStartVelocity(releaseVelocityY)
+                start()
+            }
+        }
+    }
+
+    /**
+     * Helper function for setting a property on both the adapter and on all views in the grid
+     */
+    private inline fun applyGridProperty(
+        adapterAction: (IconAdapter) -> Unit,
+        iconViewAction: (AdaptiveIconView) -> Unit) {
+        adapter?.let {
+            adapterAction(it)
+            (0 until grid.childCount)
+                .map { grid.getChildAt(it) as AdaptiveIconView }
+                .forEach { iconViewAction(it) }
+        }
+    }
+
+    private class AdaptiveIconLoader(context: Context)
+        : AsyncTaskLoader<List<AdaptiveIconDrawable>>(context) {
+
+        private val icons = ArrayList<AdaptiveIconDrawable>()
+
+        override fun onStartLoading() {
+            if (icons.isNotEmpty()) {
+                deliverResult(icons)
+            } else {
+                forceLoad()
+            }
+        }
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        override fun loadInBackground(): List<AdaptiveIconDrawable>? {
+            val pm = context.packageManager
+            val adaptiveIcons = ArrayList<AdaptiveIconDrawable>()
+            val launcherIntent = Intent().apply { addCategory(Intent.CATEGORY_LAUNCHER) }
+            pm.getInstalledApplications(0).forEach { appInfo ->
+                launcherIntent.`package` = appInfo.packageName
+                // only show launch-able apps
+                if (pm.queryIntentActivities(launcherIntent, 0).size > 0) {
+                    val icon = appInfo.loadUnbadgedIcon(pm)
+                    if (icon is AdaptiveIconDrawable) {
+                        adaptiveIcons += icon
+                    }
+                }
+            }
+            adaptiveIcons += context.getDrawable(R.drawable.ic_launcher_alt) as AdaptiveIconDrawable
+            return adaptiveIcons
+        }
+
+        override fun deliverResult(data: List<AdaptiveIconDrawable>?) {
+            icons += data!!
+            super.deliverResult(data)
+        }
+    }
+
+    private class IconAdapter(
+        private val adaptiveIcons: List<AdaptiveIconDrawable>,
+        var iconCornerRadius: Float
+    ) : RecyclerView.Adapter<IconViewHolder>() {
+
+        var velocityX = 0f
+        var velocityY = 0f
+        var foregroundTranslateFactor = DEF_FOREGROUND_TRANSLATE_FACTOR
+        var backgroundTranslateFactor = DEF_BACKGROUND_TRANSLATE_FACTOR
+        var foregroundScaleFactor = DEF_FOREGROUND_SCALE_FACTOR
+        var backgroundScaleFactor = DEF_BACKGROUND_SCALE_FACTOR
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+            IconViewHolder(LayoutInflater.from(parent.context)
+                .inflate(R.layout.icon, parent, false))
+
+        override fun onBindViewHolder(holder: IconViewHolder, position: Int) {
+            holder.icon.apply {
+                setIcon(adaptiveIcons[position % adaptiveIcons.size])
+                cornerRadius = iconCornerRadius
+                velocityX = this@IconAdapter.velocityX
+                velocityY = this@IconAdapter.velocityY
+                foregroundTranslateFactor = this@IconAdapter.foregroundTranslateFactor
+                backgroundTranslateFactor = this@IconAdapter.backgroundTranslateFactor
+                foregroundScaleFactor = this@IconAdapter.foregroundScaleFactor
+                backgroundScaleFactor = this@IconAdapter.backgroundScaleFactor
+            }
+        }
+
+        override fun getItemCount() = Math.max(adaptiveIcons.size, MIN_ICON_COUNT)
+
+        companion object {
+            private const val MIN_ICON_COUNT = 40
+        }
+    }
+
+    private class IconViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var icon = itemView as AdaptiveIconView
+    }
+
+    private enum class Decor(
+        @DrawableRes val background: Int,
+        @ColorInt val status: Int,
+        val darkStatusIcons: Boolean,
+        @DrawableRes val icon: Int) {
+
+        Wallpaper(R.drawable.wallpaper, 0x99000000.toInt(), false, R.drawable.ic_wallpaper),
+        Light(R.drawable.wallpaper_light, 0xb3eeeeee.toInt(), true, R.drawable.ic_light),
+        Dusk(R.drawable.wallpaper_dusk, 0xb3eeeeee.toInt(), true, R.drawable.ic_dusk),
+        Dark(R.drawable.wallpaper_dark, 0x99000000.toInt(), false, R.drawable.ic_dark);
+
+        operator fun next() = values()[(ordinal + 1) % values().size]
+    }
+
+    private class CenteringDecoration(
+        private val spanCount: Int,
+        private val iconSize: Int
+    ) : RecyclerView.ItemDecoration() {
+
+        private val offsets = Rect()
+        private var initialized = false
+
+        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView,
+                                    state: RecyclerView.State) {
+            if (!initialized) calculateOffsets(parent)
+            outRect.set(offsets)
+        }
+
+        private fun calculateOffsets(parent: View) {
+            val width = parent.width - parent.paddingLeft - parent.paddingRight
+            offsets.left = (width - spanCount * iconSize) / (2 * spanCount)
+            offsets.right = offsets.left
+            val height = parent.height - parent.paddingTop - parent.paddingBottom
+            offsets.top = (height - spanCount * iconSize) / (2 * spanCount)
+            offsets.bottom = offsets.top
+            initialized = true
+        }
+    }
+
+    private fun SeekBar.onSeek(progressChanged: (Int) -> Unit) {
+
+        setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) =
+                progressChanged(progress)
+            override fun onStartTrackingTouch(seekBar: SeekBar) = Unit
+            override fun onStopTrackingTouch(seekBar: SeekBar) = Unit
+        })
+    }
+
+    private operator fun VelocityTracker.plusAssign(motionEvent: MotionEvent) {
+        addMovement(motionEvent)
+        computeCurrentVelocity(1000)
+    }
+
+    companion object {
+
+        private const val DEF_FOREGROUND_TRANSLATE_FACTOR = 0.1f
+        private const val DEF_BACKGROUND_TRANSLATE_FACTOR = 0.08f
+        private const val DEF_FOREGROUND_SCALE_FACTOR = 0.2f
+        private const val DEF_BACKGROUND_SCALE_FACTOR = 0.3f
+
+        private val ICON_CORNER_RADIUS = @RequiresApi(Build.VERSION_CODES.N)
+        object : FloatProperty<AdaptiveIconActivity>("iconCornerRadius") {
+            override fun get(activity: AdaptiveIconActivity) = activity.iconCornerRadius
+
+            override fun setValue(activity: AdaptiveIconActivity,
+                                  @FloatRange(from = 0.0) cornerRadius: Float) {
+                activity.iconCornerRadius = cornerRadius
+            }
+        }
+
+        private val VELOCITY_X = object : FloatPropertyCompat<AdaptiveIconActivity>("velocityX") {
+            override fun getValue(activity: AdaptiveIconActivity) = activity.velocityX
+
+            override fun setValue(activity: AdaptiveIconActivity, velocityX: Float) {
+                activity.velocityX = velocityX
+            }
+        }
+
+        private val VELOCITY_Y = object : FloatPropertyCompat<AdaptiveIconActivity>("velocityY") {
+            override fun getValue(activity: AdaptiveIconActivity) = activity.velocityY
+
+            override fun setValue(activity: AdaptiveIconActivity, velocityY: Float) {
+                activity.velocityY = velocityY
+            }
+        }
     }
 }

@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.TransitionAdapter
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.video_background.*
 
 class LoginActivity : AppCompatActivity() {
 

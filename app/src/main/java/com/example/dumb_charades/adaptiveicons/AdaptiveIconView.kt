@@ -1,16 +1,25 @@
 package com.example.dumb_charades.adaptiveicons
 
+
+import androidx.annotation.FloatRange
+import androidx.annotation.Keep
+import com.example.dumb_charades.R
+
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapShader
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Matrix
+import android.graphics.Paint
+import android.graphics.Shader.TileMode.CLAMP
 import android.graphics.drawable.AdaptiveIconDrawable
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
-import androidx.annotation.FloatRange
-import androidx.annotation.Keep
-import com.example.dumb_charades.R
 import kotlin.reflect.KProperty
+
 
 class AdaptiveIconView(
     context: Context,
@@ -114,7 +123,7 @@ class AdaptiveIconView(
             if (shadowPaint != null) {
                 translate(0f, shadowDY)
                 drawRoundRect(0f, 0f, iconSize.toFloat(), iconSize.toFloat(),
-                    cornerRadius, cornerRadius, shadowPaint)
+                    cornerRadius, cornerRadius, shadowPaint!!)
                 translate(0f, -shadowDY)
             }
             drawRoundRect(0f, 0f, iconSize.toFloat(), iconSize.toFloat(),
