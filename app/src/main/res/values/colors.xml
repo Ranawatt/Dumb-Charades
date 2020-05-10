@@ -30,4 +30,10 @@
     <color name="Black">#040404</color>
     <color name="Gray">#CECECE</color>
     <color name="colorLoginSection">#00FCFBFB</color>
+
+
+    <color name="light_immersive_bars">#4c808080</color>
+    <color name="shadow_color">#20000000</color>
+    <color name="action_icon">#ff999999</color>
+    <color name="action_icon_stroke">#ffbbbbbb</color>
 </resources>

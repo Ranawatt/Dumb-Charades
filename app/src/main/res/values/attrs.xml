@@ -4,4 +4,13 @@
         <attr name="rating" format="float" />
         <attr name="backgroundColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="AdaptiveIconPlayground">
+        <attr name="adaptiveIconViewStyle" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="AdaptiveIconView">
+        <attr name="shadowColor" format="color" />
+        <attr name="shadowDy" format="dimension" />
+    </declare-styleable>
+
 </resources>

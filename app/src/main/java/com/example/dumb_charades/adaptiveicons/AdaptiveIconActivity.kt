@@ -1,8 +1,26 @@
 package com.example.dumb_charades.adaptiveicons
 
+import android.graphics.drawable.AdaptiveIconDrawable
+import android.graphics.drawable.ClipDrawable.HORIZONTAL
+import android.graphics.drawable.ClipDrawable.VERTICAL
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.VelocityTracker
+import android.view.View
+import android.view.View.GONE
+import android.widget.ImageView
+import android.widget.SeekBar
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.ChangeBounds
+import androidx.transition.Fade
+import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.example.dumb_charades.R
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class AdaptiveIconActivity : AppCompatActivity() {
 

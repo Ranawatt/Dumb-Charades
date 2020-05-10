@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.dumb_charades.adaptiveicons.AdaptiveIconView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/icon_size"
+    android:layout_height="@dimen/icon_size"
+    android:clickable="true"
+    android:stateListAnimator="@animator/scale"/>
