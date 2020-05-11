@@ -432,4 +432,18 @@ class AdaptiveIconActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun doWork(): Result {
+        val appContext = applicationContext
+
+        val resourceUri = "image uri"
+
+        makeStatusNotification("Blurring image", appContext)
+        // sleep()
+        (0..100 step 10).forEach {
+            setProgressAsync(workDataOf(PROGRESS to it))
+            sleep()
+        }
+
+    }
 }
