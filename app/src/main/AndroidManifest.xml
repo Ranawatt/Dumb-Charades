@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".directshare.SelectContactActivity"></activity>
+        <activity android:name=".directshare.SendMessageActivity"></activity>
+        <activity android:name=".directshare.SelectContactActivity" />
         <activity android:name=".directshare.DShareActivity" />
         <activity android:name=".adaptiveicons.AdaptiveIconActivity">
             <intent-filter>
