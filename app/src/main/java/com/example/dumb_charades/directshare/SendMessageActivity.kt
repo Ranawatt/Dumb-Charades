@@ -1,8 +1,11 @@
 package com.example.dumb_charades.directshare
 
+import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.example.dumb_charades.R
@@ -64,7 +67,7 @@ class SendMessageActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             requestSelectContact -> {
                 if (resultCode == Activity.RESULT_OK) {

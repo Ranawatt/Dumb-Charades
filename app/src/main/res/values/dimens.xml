@@ -3,4 +3,22 @@
     <dimen name="sheet_peek">136dp</dimen>
     <dimen name="grid_bottom_padding">144dp</dimen>
     <dimen name="icon_size">88dp</dimen>
+
+<!--     For Direct Share -->
+
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_huge">64dp</dimen>
+
+    <dimen name="padding_medium">16dp</dimen>
+
+    <dimen name="horizontal_page_margin">@dimen/margin_medium</dimen>
+    <dimen name="vertical_page_margin">@dimen/margin_medium</dimen>
+
+    <dimen name="dialog_padding">24dp</dimen>
+    <dimen name="dialog_button_padding">8dp</dimen>
+
+
 </resources>

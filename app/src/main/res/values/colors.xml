@@ -36,4 +36,10 @@
     <color name="shadow_color">#20000000</color>
     <color name="action_icon">#ff999999</color>
     <color name="action_icon_stroke">#ffbbbbbb</color>
+
+    <!--for Direct Share-->
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#B6B6B6</color>
 </resources>
