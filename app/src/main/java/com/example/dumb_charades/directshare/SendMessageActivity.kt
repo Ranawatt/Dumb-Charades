@@ -71,7 +71,7 @@ class SendMessageActivity : AppCompatActivity() {
         when (requestCode) {
             requestSelectContact -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    contactId = data.getIntExtra(Contact.id, Contact.invalidId)
+                    contactId = data!!.getIntExtra(Contact.id, Contact.invalidId)
                 }
                 // Give up sharing the send_message if the user didn't choose a contact.
                 if (contactId == Contact.invalidId) {

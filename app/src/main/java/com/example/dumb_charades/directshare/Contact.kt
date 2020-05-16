@@ -9,7 +9,7 @@ import com.example.dumb_charades.R
  */
 data class Contact(val name: String) {
 
-    val icon = R.mipmap.logo_avatar
+    val icon = R.drawable.ic_family
 
     companion object {
         /**

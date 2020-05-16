@@ -29,7 +29,7 @@
             android:drawablePadding="@dimen/margin_medium"
             android:gravity="center_vertical"
             android:textAppearance="@android:style/TextAppearance.Material.Body1"
-            tools:drawableStart="@mipmap/logo_avatar"
+            tools:drawableStart="@drawable/ic_family"
             tools:text="Taro" />
 
     </LinearLayout>
