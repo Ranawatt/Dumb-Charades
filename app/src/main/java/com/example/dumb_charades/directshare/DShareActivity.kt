@@ -18,7 +18,6 @@ import java.io.FileOutputStream
 import java.io.IOException
 
 class DShareActivity : AppCompatActivity() {
-
     // Tag to log to console
     private val tag = "DShare.MainActivity"
 
@@ -114,7 +113,7 @@ class DShareActivity : AppCompatActivity() {
         val cachePath = File(applicationContext.cacheDir, imageCacheDir)
         cachePath.mkdirs()
         val stream = FileOutputStream("$cachePath/$imageFile")
-        bm.compress(Bitmap.CompressFormat.PNG, 100, stream)
+//        bm.compress(Bitmap.CompressFormat.PNG, 100, stream)
         stream.close()
         val imagePath = File(cacheDir, imageCacheDir)
         val newFile = File(imagePath, imageFile)

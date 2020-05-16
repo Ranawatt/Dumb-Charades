@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
-    <share-target android:targetClass="com.example.dumb_charades.SendMessageActivity">
+    <share-target android:targetClass="com.example.dumb_charades.directshare.SendMessageActivity">
         <data android:mimeType="text/plain" />
-        <category android:name="com.example.android.directshare.category.TEXT_SHARE_TARGET" />
+        <category android:name="com.example.dumb_charades.directshare.category.TEXT_SHARE_TARGET" />
     </share-target>
 </shortcuts>
