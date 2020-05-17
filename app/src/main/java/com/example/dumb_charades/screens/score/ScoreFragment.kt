@@ -47,9 +47,13 @@ class ScoreFragment() : Fragment() {
         })
 //        binding.playAgainButton.setOnClickListener{  viewModel.onPlayAgain()  }
         binding.shareScoreButton.setOnClickListener(View.OnClickListener {
+            val scoredValue = "I have Scored ${viewModel.score.value} in Dumb-Charades Game"
             val sharingIntent = Intent(Intent.ACTION_SEND)
             sharingIntent.type = "text/plain"
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, viewModel.score.toString())
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, scoredValue)
+            // (Optional) If you want a preview title, set it with Intent.EXTRA_TITLE
+            sharingIntent.putExtra(Intent.EXTRA_TITLE, getString(R.string.send_intent_title))
+
             startActivity(Intent.createChooser(sharingIntent,null))
         })
         return binding.root
