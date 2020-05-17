@@ -34,6 +34,7 @@ class SelectContactActivity : AppCompatActivity() {
 
         override fun getItemCount() = Contact.contacts.size
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_contact)
@@ -41,20 +42,17 @@ class SelectContactActivity : AppCompatActivity() {
             finish()
             return
         }
-
         // Set up the list of contacts
         findViewById<RecyclerView>(R.id.recycler_view).apply {
             adapter = contactAdapter
             layoutManager = LinearLayoutManager(this@SelectContactActivity)
         }
     }
-
     companion object {
         /**
          * The action string for Intents.
          */
-        const val ACTION_SELECT_CONTACT =
-            "com.example.dumb_charades.directshare.intent.action.SELECT_CONTACT"
+        const val ACTION_SELECT_CONTACT = "com.example.dumb_charades.directshare.intent.action.SELECT_CONTACT"
     }
 }
 private class ContactViewHolder(textView: TextView) : RecyclerView.ViewHolder(textView)

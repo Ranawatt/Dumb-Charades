@@ -1,5 +1,6 @@
 package com.example.dumb_charades.screens.score
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -45,6 +46,12 @@ class ScoreFragment() : Fragment() {
 //                viewModel.onPlayAgainComplete()
         })
 //        binding.playAgainButton.setOnClickListener{  viewModel.onPlayAgain()  }
+        binding.shareScoreButton.setOnClickListener(View.OnClickListener {
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.type = "text/plain"
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, viewModel.score.toString())
+            startActivity(Intent.createChooser(sharingIntent,null))
+        })
         return binding.root
     }
 }

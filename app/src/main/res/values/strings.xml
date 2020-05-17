@@ -2,6 +2,7 @@
     <string name="app_name">Dumb-Charades</string>
     <string name="skip">Skip</string>
     <string name="play_again">Play Again</string>
+    <string name="share_score">Share Score</string>
     <string name="you_scored">You Scored</string>
     <string name="title_text">guess the word!</string>
     <string name="play_button">Play</string>

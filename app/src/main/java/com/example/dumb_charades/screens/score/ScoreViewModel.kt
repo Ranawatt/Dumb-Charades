@@ -1,9 +1,12 @@
 package com.example.dumb_charades.screens.score
 
+import android.content.Intent
 import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.dumb_charades.R
 
 class ScoreViewModel(finalScore : Int) : ViewModel() {
     // TODO: Implement the ViewModel
@@ -26,6 +29,10 @@ class ScoreViewModel(finalScore : Int) : ViewModel() {
 
     fun onPlayAgainComplete(){
         _eventPlayAgain.value = false
+    }
+
+    fun onShare(){
+        _score.value
     }
 
 }

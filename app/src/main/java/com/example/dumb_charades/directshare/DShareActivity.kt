@@ -22,7 +22,7 @@ class DShareActivity : AppCompatActivity() {
     private val tag = "DShare.MainActivity"
 
     // Domain authority for our app FileProvider
-    private val fileProviderAuthority = "com.example.android.directshare.fileprovider"
+    private val fileProviderAuthority = "com.example.dumb_charades.directshare.fileprovider"
 
     // Cache directory to store images
     // This is the same path specified in the @xml/file_paths and accessed from the AndroidManifest

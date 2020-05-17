@@ -82,7 +82,7 @@
         <item name="android:colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="DirectShareDialogTheme" parent="Theme.AppCompat.DayNight.DialogWhenLarge">
+    <style name="DirectShareDialogTheme" parent="Theme.AppCompat.DayNight.Dialog">
         <item name="android:colorPrimary">@color/colorPrimary</item>
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:colorAccent">@color/colorAccent</item>
