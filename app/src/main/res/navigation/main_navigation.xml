@@ -66,6 +66,6 @@
     <fragment
         android:id="@+id/ticketFragment"
         android:name="com.example.dumb_charades.TicketFragment"
-        android:label="fragment_ticket"
-        tools:layout="@layout/fragment_ticket" />
+        android:label="booking_ticket"
+        tools:layout="@layout/booking_ticket" />
 </navigation>
