@@ -60,11 +60,12 @@
         android:label="movie_destination"
         tools:layout="@layout/movie_destination" >
         <action
-            android:id="@+id/action_movieFragment_to_game_destination"
-            app:destination="@id/game_destination"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left"/>
+            android:id="@+id/action_movieFragment_to_ticketFragment"
+            app:destination="@id/ticketFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/ticketFragment"
+        android:name="com.example.dumb_charades.TicketFragment"
+        android:label="fragment_ticket"
+        tools:layout="@layout/fragment_ticket" />
 </navigation>
