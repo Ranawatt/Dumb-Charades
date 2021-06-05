@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.TransitionManager
 import android.widget.Toast
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.TransitionAdapter
@@ -17,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.anna_moskal)
+        val uri = Uri.parse("android.resource://" + this.packageName + "/" + R.raw.anna_moskal)
         videoView.setVideoURI(uri)
         videoView.start()
         videoView.setOnPreparedListener {
@@ -27,7 +26,8 @@ class LoginActivity : AppCompatActivity() {
             when (currentStateId) {
                 R.id.start -> {
 //                    Toast.makeText(this,"Perform Login",Toast.LENGTH_LONG).show()
-                    if (login_email.editText!!.text.toString().equals("sugandhpatna95@gmail.com") && login_password.editText!!.text.toString().equals("sugandh"))
+                    if (login_email.editText!!.text?.toString().equals("sugandhpatna95@gmail.com") &&
+                        login_password.editText!!.text?.toString().equals("sugandh"))
                         intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
 

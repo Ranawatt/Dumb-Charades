@@ -5,10 +5,10 @@ import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.dumb_charades.databinding.MovieDestinationBinding
 
 class MovieFragment : Fragment() {
@@ -19,7 +19,7 @@ class MovieFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = DataBindingUtil.inflate(inflater,R.layout.movie_destination, container,false)
 
@@ -38,6 +38,9 @@ class MovieFragment : Fragment() {
                 constraintSet2.applyTo(constraintLayout)
             }
             isLargeLayout = !isLargeLayout
+        }
+        binding.buttonBuy.setOnClickListener {
+            findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToTicketFragment())
         }
         return binding.root
     }
