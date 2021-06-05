@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".TicketFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".TicketFragment">
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/cover_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="2:3"
+            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+            app:layout_constraintStart_toStartOf="@+id/left_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/status"
+            app:srcCompat="@drawable/red_sparrow" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/menu_button"
@@ -33,34 +50,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.85" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:src="@drawable/transition"
-            android:text="@string/movie_status"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintStart_toStartOf="@+id/left_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/menu_button"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/cover"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="@string/cover_image"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="2:3"
-            app:layout_constraintEnd_toStartOf="@+id/right_guideline"
-            app:layout_constraintStart_toStartOf="@+id/left_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/status"
-            app:srcCompat="@drawable/red_sparrow"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/cast_one"
@@ -171,12 +160,25 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="@string/movie_rating"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/left_guideline"
             app:layout_constraintTop_toBottomOf="@+id/desc" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:src="@drawable/transition"
+            android:text="@string/movie_status"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toStartOf="@+id/left_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/menu_button" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier"
@@ -190,7 +192,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:tint="@android:color/black"
+            android:backgroundTint="@android:color/black"
             app:layout_constraintBottom_toTopOf="@+id/desc"
             app:layout_constraintEnd_toEndOf="@+id/cover"
             app:layout_constraintTop_toTopOf="@+id/movie_title"
@@ -212,9 +214,9 @@
             android:layout_height="2dp"
             android:layout_marginTop="16dp"
             android:background="@android:color/white"
-            android:paddingLeft="8dp"
+            android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:paddingRight="8dp"
+            android:paddingBottom="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/day_1"
             app:layout_constraintEnd_toEndOf="@+id/day_1"
             app:layout_constraintStart_toStartOf="@+id/day_1"
@@ -233,7 +235,7 @@
             android:id="@+id/date_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="20"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintEnd_toEndOf="@+id/day_1"
@@ -246,7 +248,7 @@
             android:id="@+id/date_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
+            android:fontFamily="sans-serif-medium"
             android:text="21"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="@+id/date_1"
@@ -260,7 +262,7 @@
             android:id="@+id/date_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="22"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="@+id/date_2"
@@ -273,7 +275,7 @@
             android:id="@+id/date_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="sans-serif-medium"
             android:text="23"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="@+id/date_3"
@@ -286,7 +288,7 @@
             android:id="@+id/date_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="serif"
+            android:fontFamily="sans-serif-condensed-medium"
             android:text="24"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="@+id/date_4"
@@ -299,7 +301,7 @@
             android:id="@+id/date_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-thin"
+            android:fontFamily="sans-serif-medium"
             android:text="25"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="@+id/date_5"
@@ -312,7 +314,7 @@
             android:id="@+id/date_7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="sans-serif-black"
             android:text="26"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="@+id/date_6"
@@ -326,8 +328,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:paddingBottom="16dp"
             android:text="@string/sunday"
             app:layout_constraintEnd_toStartOf="@+id/day_2"
@@ -339,8 +341,8 @@
             android:id="@+id/day_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:paddingBottom="16dp"
             android:text="@string/tuesday"
             app:layout_constraintBottom_toBottomOf="@+id/day_2"
@@ -353,8 +355,8 @@
             android:id="@+id/day_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:paddingBottom="16dp"
             android:text="@string/monday"
             app:layout_constraintBottom_toBottomOf="@+id/day_1"
@@ -367,8 +369,8 @@
             android:id="@+id/day_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:paddingBottom="16dp"
             android:text="@string/wednesday"
             app:layout_constraintBottom_toBottomOf="@+id/day_3"
@@ -381,8 +383,8 @@
             android:id="@+id/day_7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:paddingBottom="16dp"
             android:text="@string/saturday"
             app:layout_constraintBottom_toBottomOf="@+id/day_6"
@@ -462,4 +464,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/movie_theater_name"
             app:layout_constraintTop_toBottomOf="@+id/movie_theater_name" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
