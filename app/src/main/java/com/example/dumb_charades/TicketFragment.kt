@@ -1,21 +1,20 @@
-package com.example.dumb_charades
+ package com.example.dumb_charades
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.fragment.app.Fragment
 import androidx.transition.TransitionManager
 import kotlinx.android.synthetic.main.booking_ticket.*
 
-class TicketFragment : Fragment() {
+ class TicketFragment : Fragment() {
 
     private lateinit var coverImage: View
     private lateinit var menuButton: AppCompatImageButton
@@ -25,25 +24,26 @@ class TicketFragment : Fragment() {
     private lateinit var movieRating: AppCompatTextView
     private lateinit var descriptionButton: AppCompatImageButton
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.booking_ticket, container, false)
-
         addConstraintSetAnimation()
         return view
     }
     private fun addConstraintSetAnimation() {
-//        coverImage = cover
-//        menuButton = menu_button
-//        movieStatus = status
-//        movieTitle = movie_title
-//        movieDescription = desc
-//        movieRating = rating
-//        descriptionButton = description_button
 
+        coverImage = this.cover
+        menuButton = this.menu_button
+        movieStatus = this.status
+        movieTitle = this.movie_title
+        movieDescription = this.desc
+        movieRating = this.rating
+        descriptionButton = this.description_button
         var isCoverView = false
         var isDescriptionView = false
 
@@ -76,7 +76,7 @@ class TicketFragment : Fragment() {
             day.value.setOnClickListener { selectDate(day.key, descriptionConstraint) }
         }
 
-        cover.setOnClickListener {
+        coverImage.setOnClickListener {
             if (!isCoverView) {
                 TransitionManager.beginDelayedTransition(root)
                 coverConstraint.applyTo(root)
